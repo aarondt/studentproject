@@ -1,11 +1,6 @@
 class User < ActiveRecord::Base
   
   has_one :profile, dependent: :destroy
-  after_create :init_profile
-
-  def init_profile
-    self.create_profile!
-  end
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
