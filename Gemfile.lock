@@ -36,6 +36,8 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     arel (6.0.4)
     bcrypt (3.1.11)
     binding_of_caller (0.7.2)
@@ -64,7 +66,10 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    gravatar_image_tag (1.2.0)
     grease (0.3.1)
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
     i18n (0.8.6)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
@@ -74,6 +79,7 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.6)
+    jwt (1.5.6)
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (3.0.0)
@@ -92,9 +98,16 @@ GEM
     mini_portile2 (2.2.0)
     minitest (5.10.3)
     multi_json (1.12.1)
+    multi_xml (0.6.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    opentok (3.0.0)
+      activesupport (>= 2.0)
+      addressable (~> 2.3)
+      httparty (~> 0.15.5)
+      jwt (~> 1.5.6)
     orm_adapter (0.5.0)
+    public_suffix (3.0.1)
     rack (1.6.8)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -185,8 +198,10 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   devise
   devise-bootstrap-views
+  gravatar_image_tag
   jbuilder (~> 2.0)
   jquery-rails
+  opentok
   rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'#, '4.2.5'
-
+gem 'rails'
+gem 'opentok'
+gem 'gravatar_image_tag'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'

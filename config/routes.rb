@@ -1,10 +1,24 @@
 Rails.application.routes.draw do
+  # get 'rooms/index'
+
+  # get 'rooms/create'
+
+  # get 'rooms/party'
+
+  # get 'rooms/config_opentok'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   root 'pages#home'
   resources :profiles
   get '/about', to: 'pages#about'
+  
+  
+  #root :to => 'rooms#index'
+  resources :rooms
+  match '/party/:id', :to => 'rooms#party', :as => :party, :via => :get
+  delete '/rooms/:id', to: 'room#destroy'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

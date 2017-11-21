@@ -1,0 +1,56 @@
+<h1>Willkommen im Raum <%= @room.name %></h1>
+
+
+<div id='invitation'>Lade weitere Teilnehmer mit folgendem Link ein: https://alpha1-cloned2-aadt91.c9users.io/party/<%= @room.id %></div>
+</br>
+<div id='videobox'>
+
+</div>
+
+<script type='text/javascript'>
+var apiKey = '46003472';
+var sessionId = '<%= @room.sessionId %>';
+var token = '<%= @tok_token %>';
+
+
+OT.setLogLevel(OT.DEBUG);
+//session.connect(apiKey, token);
+var session = OT.initSession(sessionId);
+session.addEventListener('sessionConnected', sessionConnectedHandler);
+session.addEventListener('streamCreated', streamCreatedHandler);
+session.connect(apiKey, token);
+
+var publisher;
+function sessionConnectedHandler(event) {
+publisher = OT.initPublisher(apiKey, 'videobox');
+session.publish(publisher);
+
+// Subscribe to streams that were in the session when we connected
+subscribeToStreams(event.streams);
+}
+
+function streamCreatedHandler(event) {
+// Subscribe to any new streams that are created
+subscribeToStreams(event.streams);
+}
+
+function subscribeToStreams(streams) {
+for (var i = 0; i < streams.length; i++) {
+// Make sure we don’t subscribe to ourself
+if (streams[i].connection.connectionId == session.connection.connectionId) {
+return;
+}
+
+// Create the div to put the subscriber element in to
+var objTo = document.getElementById('invitation')
+var div = document.createElement('div');
+div.setAttribute('id', 'stream' + streams[i].streamId);
+objTo.appendChild(div);
+
+// Subscribe to the stream
+session.subscribe(streams[i], div.id);
+}
+}
+</script>
+
+

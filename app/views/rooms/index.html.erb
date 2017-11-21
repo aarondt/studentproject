@@ -1,0 +1,41 @@
+<h1>Chat-Rooms</h1>
+<p>Erstelle einen Chat-Raum und lade Freunde ein</p>
+
+<div id='newRoom'>
+<fieldset>
+<legend>Raum erstellen</legend>
+<%= form_for(@new_room) do |f| %>
+Raum-Name: <%= f.text_field :name %><br/><br/>
+Öffentlich? <%= f.check_box :public %><br/><br/>
+
+<%= f.submit %>
+<br/><br/>
+<% end %>
+</fieldset>
+</div>
+
+<fieldset>
+
+<legend>Bereits erstellte Räume</legend>
+<table cellpadding='2' cellspacing='5'>
+<tr>
+<th>Name</th>
+<th>Erstellt am</th>
+</tr>
+
+<% @rooms.each do |room| %>
+<tr>
+<td align='center' width='300px'><a href='/party/<%= room.id %>'><%= room.name %></a></td>
+<td><%= room.created_at %></td>
+<td>
+    <%= link_to '  Löschen', room_path(room.id), :method => :delete %> 
+</td>
+
+
+
+</tr>
+<% end %>
+</table>
+</fieldset>
+
+

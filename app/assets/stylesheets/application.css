@@ -14,3 +14,28 @@
  *= require_tree .
  *= require_self
  */
+
+.listing {
+    list-style: none;
+    padding-left: 0;
+}
+
+.profile_image{
+    float: left;
+    margin-right: 20px;
+    
+}
+#profile-wrapper{
+    min-height: 120px;
+}
+
+.profile_name{
+    font-size: 20px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+#profile_button{
+    float: right;
+    margin-left: 8px;
+}
