@@ -1,25 +1,10 @@
 <h1>Startseite</h1>
 <div align="left">
+
     <% @users.each do |user| %>
         <% if user.profile.nil? %>
         <% else %>
-            <ul class="listing">
-                <div class="row">
-                    <div class="well col-md-10 col-md-offset-1", id="profile-wrapper">
-                        <div class="profile_image">
-                            <%= gravatar_for user, size: 110%>
-                        </div>
-                        <li class="profile_name"><%= "#{user.profile.name}" %>
-                        </li>
-                        <li>Spezialist für: <%= "#{user.profile.specialization}" %>
-                        </li>
-                        <li>Email: <%= "#{user.email}" %>
-                        </li>
-                        <%= link_to "Zum Profil", profile_path(user.profile.id), class: "btn btn-primary", id: "profile_button" %>
-                        <%= link_to "Video-Chat", rooms_path, class: "btn btn-success", id: "profile_button" %>
-                    </div>
-                </div>
-            </ul>
+           <%= render partial: "flat", locals: {profile: user}%>
         <% end %>
     <%end%>
 </div>

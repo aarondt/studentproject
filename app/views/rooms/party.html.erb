@@ -22,8 +22,10 @@ session.connect(apiKey, token);
 
 var publisher;
 function sessionConnectedHandler(event) {
-publisher = OT.initPublisher(apiKey, 'videobox');
+videoOptions = {width: 480, height: 320}
+publisher = OT.initPublisher(apiKey, 'videobox',videoOptions);
 session.publish(publisher);
+
 
 // Subscribe to streams that were in the session when we connected
 subscribeToStreams(event.streams);
@@ -48,7 +50,7 @@ div.setAttribute('id', 'stream' + streams[i].streamId);
 objTo.appendChild(div);
 
 // Subscribe to the stream
-session.subscribe(streams[i], div.id);
+session.subscribe(streams[i], div.id, videoOptions);
 }
 }
 </script>
