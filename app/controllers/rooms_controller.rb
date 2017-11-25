@@ -1,9 +1,23 @@
 class RoomsController < ApplicationController
 before_filter :config_opentok,:except => [:index]
+skip_before_action :verify_authenticity_token #needed for ajax
 def index
 @rooms = Room.where(:public => true).order('created_at DESC')
 @new_room = Room.new
 end
+
+def getinfo
+  @message = params[:message]
+  puts @message
+  #redirect_to '/getinfo2'
+  redirect_to getinfo2_path(passed_parameter: params[:message])
+end 
+
+def getinfo2
+  @lastRoomCreated = current_user.rooms.last
+  @lastRoomCreated.session_duration = params[:passed_parameter]
+  @lastRoomCreated.save
+end 
 
 def create
   session = @opentok.create_session
@@ -15,6 +29,7 @@ def create
   @new_room.name = params[:room][:name]
   @new_room.sessionId = session.session_id
   @new_room.public = params[:room][:public]
+  @new_room.created_by_user_id = current_user.id
   
   respond_to do |format|
     if @new_room.save

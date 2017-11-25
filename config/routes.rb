@@ -14,11 +14,16 @@ Rails.application.routes.draw do
   resources :profiles
   get '/about', to: 'pages#about'
   get '/home', to: 'pages#home'
+  get '/test', to: 'pages#test_page'
+  
+
   
   #root :to => 'rooms#index'
   resources :rooms
   match '/party/:id', :to => 'rooms#party', :as => :party, :via => :get
   delete '/rooms/:id', to: 'room#destroy'
+  post 'party/counter/:message', to: 'rooms#getinfo'
+  get '/getinfo2', to: 'rooms#getinfo2'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
