@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # get 'rooms/index'
+   # get 'rooms/index'
 
   # get 'rooms/create'
 
@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  
+  mount ActionCable.server => '/cable'
+  
   root 'pages#start'
   resources :profiles
   get '/about', to: 'pages#about'

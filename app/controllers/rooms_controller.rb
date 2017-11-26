@@ -29,7 +29,7 @@ def create
   @new_room.name = params[:room][:name]
   @new_room.sessionId = session.session_id
   @new_room.public = params[:room][:public]
-  @new_room.created_by_user_id = current_user.id
+  @new_room.user_id = current_user.id
   
   respond_to do |format|
     if @new_room.save
